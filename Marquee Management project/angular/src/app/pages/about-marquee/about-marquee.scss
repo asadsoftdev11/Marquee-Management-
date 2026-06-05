@@ -1,0 +1,201 @@
+/* Global Styles */
+.marquee-dashboard {
+  overflow-y: auto;
+  background: linear-gradient(135deg, #0b1220 0%, #404057 100%);
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+.hero-section {
+  min-height: 85vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(rgba(8, 12, 18, 0.45), rgba(8, 12, 18, 0.45)),
+    url('/assets/images/about-image.jpg');
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.divider {
+  background: #007bff;
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.text-gradient {
+  color: #ffbd8ecc;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.divider {
+  height: 2px;
+  width: 60px;
+  background: #007bff;
+  border-radius: 2px;
+}
+
+.ls-wide {
+  color: rgb(241, 241, 74);
+  letter-spacing: 2px;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation Buttons */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f1f1;
+  padding: 10px 26px;
+  border-radius: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.65s ease;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-glass:hover {
+  background: linear-gradient(135deg, #ffffff, #f1f1f1);
+  color: #111;
+  transform: translateY(-4px) scale(1.18);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-color: transparent;
+}
+
+/* Content Card */
+.content-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 60px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transform: translateY(-30px);
+}
+
+.content-card h2 {
+  color: #ffffff;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+
+.content-card p {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.8;
+  font-size: 0.98rem;
+}
+
+/* Tech Stack Section */
+.bg-dark-soft {
+  background: rgba(201, 118, 118, 0.02);
+}
+
+.tech-stack {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.tech-stack span {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+}
+.content-card .row {
+  margin-top: 10px;
+}
+.text-muted {
+  color: #c2f0b9 !important;
+  letter-spacing: 1.5px;
+}
+.content-card .row {
+  margin-top: 10px;
+}
+
+.content-card h2 {
+  font-size: 2rem;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+/* ================= CONTACT SECTION ================= */
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.contact-title {
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.contact-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 25px 15px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.contact-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-icon {
+  font-size: 28px;
+  color: #4fc3f7;
+  margin-bottom: 15px;
+}
+
+.contact-box h6 {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.contact-box p {
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  font-size: 0.95rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}

@@ -1,0 +1,58 @@
+<div class="hm-root">
+
+  <section class="hm-hero">
+    <div class="hm-wrap">
+      <p class="hm-eyebrow">Marquee Management</p>
+      <h1 class="hm-title">Welcome to<br><span>Marquee Management</span></h1>
+      <div class="hm-marquee">
+       <div class="hm-marquee-track">
+             Streamline bookings, venues, and events — all in one platform.
+        </div>
+       </div>
+      <div class="hm-btns">
+        <button class="btn-gold" (click)="goToMarquees()">
+          <i class="fa fa-warehouse"></i> Marquees
+        </button>
+        <a class="btn-ghost" href="/bookings">
+          <i class="fa fa-calendar-check"></i> Bookings
+        </a>
+        <button class="btn-outline" (click)="goToAbout()">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hm-stats">
+    <div class="hm-wrap hm-grid-4">
+      <div class="hm-card"><i class="fa fa-warehouse"></i><span class="num">12</span><span>Venues</span></div>
+      <div class="hm-card"><i class="fa fa-calendar-check"></i><span class="num">248</span><span>Bookings</span></div>
+      <div class="hm-card"><i class="fa fa-users"></i><span class="num">1,430</span><span>Customers</span></div>
+      <div class="hm-card"><i class="fa fa-utensils"></i><span class="num">54</span><span>Menu Items</span></div>
+    </div>
+  </section>
+
+  <section class="hm-section">
+    <div class="hm-wrap hm-grid-2">
+
+      <div class="hm-glass">
+        <h5><i class="fa fa-chart-bar"></i> Booking Status</h5>
+        <div class="prog"><div class="prog-top"><span>Confirmed</span><span>68%</span></div><div class="bar"><div class="fill gold" style="width:68%"></div></div></div>
+        <div class="prog"><div class="prog-top"><span>Pending</span><span>22%</span></div><div class="bar"><div class="fill blue" style="width:22%"></div></div></div>
+        <div class="prog"><div class="prog-top"><span>Cancelled</span><span>10%</span></div><div class="bar"><div class="fill rose" style="width:10%"></div></div></div>
+        <div class="prog"><div class="prog-top"><span>Venue Utilization</span><span>83%</span></div><div class="bar"><div class="fill green" style="width:83%"></div></div></div>
+      </div>
+
+      <div class="hm-cta">
+        <p class="tag">Ready to serve</p>
+        <h3>Your Next Grand Event Starts Here</h3>
+        <p>Create bookings, assign marquees, set menus — all from one platform.</p>
+        <button class="btn-gold" (click)="goToBookings()"> <i class="fa fa-champagne-glasses"></i> Plan Your Event </button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="hm-footer">
+    <div class="hm-wrap">© 2025 Marquee Management · ABP · Angular · SQL Server</div>
+  </footer>
+
+</div>

@@ -1,0 +1,428 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+:root {
+
+    --primary-dark: #0d4d66;
+  --primary-light: #1f8db5;
+  --success-soft: #16a34a;
+
+  --lpx-theme-light-bg: url('assets/images/login/login-bg-img-light.svg');
+  --lpx-theme-dim-bg: url('assets/images/login/login-bg-img-dim.svg');
+  --lpx-theme-dark-bg: url('assets/images/login/login-bg-img-dark.svg');
+
+  --lpx-logo-icon: url('assets/images/logo/icon-lite.svg');
+  --lpx-logo-url: var(--lpx-logo-icon);
+  --lpx-logo: var(--lpx-logo-icon);
+
+  .abp-logo {
+    background-repeat: no-repeat;
+  }
+
+  .abp-support {
+    width: 178px;
+    height: 30px;
+    background-image: url('assets/images/getting-started/abp-support.svg');
+  }
+
+  .abp-community {
+    width: 215px;
+    height: 30px;
+    background-image: url('assets/images/getting-started/abp-community.svg');
+  }
+
+  .abp-blog {
+    width: 142px;
+    height: 30px;
+    background-image: url('assets/images/getting-started/abp-blog.svg');
+  }
+
+  .logo-x {
+    width: 20px;
+    height: 20px;
+    background-image: url('assets/images/getting-started/x.svg');
+  }
+}
+
+.content-header-title {
+    color: maroon;
+    font-size: 1.9em !important;
+    font-weight: 600;
+    margin-bottom: 1em;
+    margin-top: 0.3333333333em;
+}
+
+.btn-primary {
+    --bs-btn-bg: #147196;
+    border: none;
+}
+
+
+.abp-sidebar .nav-link {
+  position: relative;
+}
+
+.abp-sidebar .nav-link:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 999;
+  font-size: 12px;
+}
+
+.app-dark-page {
+  display: block;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)),
+    url('https://static.vecteezy.com/system/resources/thumbnails/074/298/652/small/healthy-vs-unhealthy-food-choice-on-dark-background-photo.jpg')
+    no-repeat center center / cover fixed;
+  padding: 24px;
+}
+
+/* kill ABP white layers */
+.app-dark-page .content-wrapper,
+.app-dark-page .abp-page-content,
+.app-dark-page abp-page > * {
+  background: transparent !important;
+}
+
+/* ================= CARDS ================= */
+.app-dark-page .card {
+  background: rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(14px) !important;
+  color: #fff !important;
+}
+
+.app-dark-page .card-body {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+/* ================= TITLES ================= */
+.app-dark-page h1,
+.app-dark-page .content-header-title {
+  color: #fff !important;
+}
+
+/* ================= LABELS ================= */
+.app-dark-page label {
+  color: rgba(255,255,255,0.80) !important;
+}
+
+/* ================= INPUTS ================= */
+.app-dark-page .form-control {
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+}
+
+.app-dark-page .form-control::placeholder {
+  color: rgba(255,255,255,0.45) !important;
+}
+
+.app-dark-page .form-control:focus {
+  background: rgba(255,255,255,0.16) !important;
+  border-color: rgba(255,255,255,0.50) !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.10) !important;
+}
+
+/* ================= BUTTONS ================= */
+.app-dark-page .btn-outline-primary {
+  border-color: rgba(255,255,255,0.55) !important;
+  color: #fff !important;
+}
+.app-dark-page .btn-outline-primary:hover {
+  background: rgba(255,255,255,0.15) !important;
+}
+
+.app-dark-page .btn-outline-info {
+  border-color: rgba(255,255,255,0.40) !important;
+  color: #fff !important;
+}
+.app-dark-page .btn-outline-info:hover {
+  background: rgba(255,255,255,0.10) !important;
+}
+
+.app-dark-page .btn-outline-secondary {
+  border-color: rgba(255,255,255,0.30) !important;
+  color: rgba(255,255,255,0.75) !important;
+}
+.app-dark-page .btn-outline-secondary:hover {
+  background: rgba(255,255,255,0.10) !important;
+}
+
+/* ================= DATATABLE ================= */
+.app-dark-page .ngx-datatable.material {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #fff !important;
+}
+
+.app-dark-page .ngx-datatable.material .datatable-header {
+  background: rgba(255,255,255,0.06) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.14) !important;
+}
+
+.app-dark-page .ngx-datatable.material .datatable-header-cell {
+  background: transparent !important;
+  color: rgba(255,255,255,0.60) !important;
+  font-size: 0.70rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.app-dark-page .ngx-datatable.material .datatable-body {
+  background: transparent !important;
+}
+
+.app-dark-page .ngx-datatable.material .datatable-body-row {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  transition: background 0.12s linear !important;
+}
+
+.app-dark-page .ngx-datatable.material .datatable-body-row:hover,
+.app-dark-page .ngx-datatable.material .datatable-body-row:hover > .datatable-row-group {
+  background: rgba(13, 177, 241, 0.1) !important;
+}
+
+.app-dark-page .ngx-datatable.material .datatable-body-cell,
+.app-dark-page .ngx-datatable.material .datatable-body-cell-label,
+.app-dark-page .ngx-datatable.material .datatable-header-cell {
+  color: #fff !important;
+}
+.app-dark-page .ngx-datatable.material .datatable-footer {
+  background: rgba(255,255,255,0.04) !important;
+  border-top: 1px solid rgba(255,255,255,0.10) !important;
+  color: rgba(255,255,255,0.55) !important;
+}
+
+.app-dark-page .ngx-datatable.material .datatable-footer .datatable-pager li.active a {
+  background: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+
+.app-dark-page .abp-page-content,
+.app-dark-page .content-wrapper,
+.app-dark-page abp-page > * {
+  background: transparent !important;
+}
+
+.app-dark-page select.form-control {
+  background-color: rgba(180, 100, 53, 0.062) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.25) !important;
+}
+
+.app-dark-page select.form-control option {
+  background-color: #1e1e1e;   
+  color: #ffffff;          
+}
+
+.app-dark-page select.form-control option:checked {
+  background-color: #147196 !important;
+  color: #fff !important;
+}
+
+.app-dark-page select.form-control option:hover {
+  background-color: #147196;
+  color: #fff;
+}
+
+.modal-header h1,
+.modal-header h2,
+.modal-header h3,
+.modal-header h4,
+.modal-header h5,
+.modal-header h6 {
+  font-size: 1.5rem !important;
+  color: #197710 !important;
+  font-weight: 700;
+   margin-bottom: 0 !important;
+}
+
+/* ================= MODAL DESIGN ================= */
+
+.modal-content {
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  border: none !important;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #147196, #0d4d66) !important;
+  border-bottom: none !important;
+  padding: 18px 24px !important;
+}
+
+.modal-header h1,
+.modal-header h2,
+.modal-header h3,
+.modal-header h4,
+.modal-header h5,
+.modal-header h6 {
+  color: white !important;
+  font-weight: 600;
+  margin: 0 !important;
+  font-size: 1.3rem !important;
+}
+
+.modal-header i {
+  color: #fff !important;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.modal-body {
+  background: #ffffff !important;
+  padding: 24px !important;
+}
+
+.modal-footer {
+  border-top: 1px solid #edf2f7 !important;
+  background: #f8fafc !important;
+  padding: 16px 24px !important;
+}
+
+.modal-content .form-control {
+  border-radius: 10px !important;
+  border: 1px solid #dbe2ea !important;
+  height: 44px;
+}
+
+.modal-content textarea.form-control {
+  height: auto !important;
+}
+
+.modal-content .form-control:focus {
+  border-color: #147196 !important;
+  box-shadow: 0 0 0 0.15rem rgba(20,113,150,0.15) !important;
+}
+
+.modal-content label {
+  color: #334155 !important;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #147196, #0d4d66);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.btn-gradient:hover {
+  transform: translateY(-1px);
+  transition: 0.2s ease;
+  background: linear-gradient(135deg, #1a88b5, #12607e);
+}
+
+.card,
+.modal-content,
+.btn,
+.form-control {
+  transition: all 0.25s ease;
+}
+
+/* ================= INPUT GROUP ICONS ================= */
+
+.input-group-text {
+  background: #147196 !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 10px 0 0 10px !important;
+  min-width: 45px;
+  justify-content: center;
+}
+
+.modal-content .input-group .form-control {
+  border-left: none !important;
+}
+
+.textarea-icon {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  color: #147196;
+  z-index: 10;
+  font-size: 14px;
+}
+/* ===== SIDEBAR ===== */
+
+.lpx-sidebar,
+.lpx-sidebar-container {
+  background: linear-gradient(
+    180deg,
+    #16271f,
+    #22352d,
+    #356b55
+  ) !important;
+}
+
+/* MENU AREA */
+.lpx-sidebar .lpx-nav,
+.lpx-sidebar .lpx-nav-menu,
+.lpx-sidebar ul,
+.lpx-sidebar li {
+  background: transparent !important;
+}
+
+.lpx-sidebar .lpx-logo-container {
+    position: fixed;
+    width: 280px;
+    z-index: 100;
+    background-color: #162b14;
+    top: 0;
+}
+
+element.style {
+    left: 58px !important;
+}
+.lpx-brand-name {
+    background: #162b14;
+    color: #fff;
+    position: absolute;
+    left: 62px;
+    top: 20px;
+    width: 160px;
+    height: 32px;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lpx-sidebar .active,
+.lpx-sidebar .selected {
+  background: rgba(44, 112, 56, 0.26) !important;
+  color: #e6e6e6 !important;
+}
+
+
+.lpx-brand-logo {
+    background-image: var(--lpx-logo);
+    background-repeat: no-repeat;
+    background-size: auto 32px;
+    background-position: left 0px;
+    display: block;
+    height: 32px;
+}

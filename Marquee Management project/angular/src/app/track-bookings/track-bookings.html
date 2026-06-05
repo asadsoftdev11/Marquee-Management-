@@ -1,0 +1,209 @@
+<abp-page [title]="'Track Booking'">
+  <!-- SEARCH -->
+  <div class="tb-search no-print">
+    <div class="tb-search__inner">
+      <div class="tb-search__field">
+        <i class="fa fa-user tb-search__icon"></i>
+        <input
+          class="tb-search__input"
+          placeholder="Customer name"
+          [(ngModel)]="searchName"
+          (keyup.enter)="search()"
+        />
+      </div>
+      <div class="tb-search__field">
+        <i class="fa fa-phone tb-search__icon"></i>
+        <input
+          class="tb-search__input"
+          placeholder="Phone (optional)"
+          [(ngModel)]="searchPhone"
+          (keyup.enter)="search()"
+        />
+      </div>
+      <div class="tb-search__actions">
+        <button
+          class="tb-btn tb-btn--primary"
+          (click)="search()"
+          [disabled]="isLoading || (!searchName.trim() && !searchPhone.trim())"
+        >
+          <i class="fa fa-search"></i>
+          {{ isLoading ? 'Searching...' : 'Search' }}
+        </button>
+        <button *ngIf="searched" class="tb-btn tb-btn--ghost" (click)="clear()">
+          <i class="fa fa-times"></i> Clear
+        </button>
+        <button *ngIf="result" class="tb-btn tb-btn--green" (click)="print()">
+          <i class="fa fa-print"></i> Print
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div *ngIf="isLoading" class="tb-state">
+    <div class="tb-state__spinner"></div>
+    <p>Searching records...</p>
+  </div>
+
+  <!-- NOT FOUND -->
+  <div *ngIf="searched && notFound && !isLoading" class="tb-state">
+    <i class="fa fa-user-slash tb-state__icon"></i>
+    <p>No customer found matching your search.</p>
+  </div>
+
+  <!-- RESULTS -->
+  <div *ngIf="result && !isLoading" class="tb-results print-area">
+    <!-- CUSTOMER CARD -->
+    <div class="tb-card tb-customer">
+      <div class="tb-customer__avatar">{{ getInitials(result.customerName) }}</div>
+      <div class="tb-customer__info">
+        <h2 class="tb-customer__name">{{ result.customerName }}</h2>
+        <span class="tb-customer__email">{{ result.customerEmail }}</span>
+      </div>
+      <div class="tb-customer__meta">
+        <div class="tb-meta-item">
+          <i class="fa fa-phone"></i>
+          <span>{{ result.customerPhone || '—' }}</span>
+        </div>
+        <div class="tb-meta-item">
+          <i class="fa fa-map-marker-alt"></i>
+          <span>{{ result.customerAddress || '—' }}</span>
+        </div>
+        <div class="tb-meta-item">
+          <i class="fa fa-calendar-check"></i>
+          <span
+            >{{ result.bookings.length }} booking{{ result.bookings.length !== 1 ? 's' : '' }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY ROW -->
+    <div class="tb-summary-row">
+      <div class="tb-summary-chip tb-summary-chip--teal">
+        <span class="tb-summary-chip__label">Total Paid</span>
+        <span class="tb-summary-chip__value">Rs. {{ getTotalAmount() | number }}</span>
+      </div>
+      <div class="tb-summary-chip tb-summary-chip--green">
+        <span class="tb-summary-chip__label">Confirmed</span>
+        <span class="tb-summary-chip__value">{{ getCount(1) }}</span>
+      </div>
+      <div class="tb-summary-chip tb-summary-chip--amber">
+        <span class="tb-summary-chip__label">Pending</span>
+        <span class="tb-summary-chip__value">{{ getCount(0) }}</span>
+      </div>
+      <div class="tb-summary-chip tb-summary-chip--red">
+        <span class="tb-summary-chip__label">Cancelled</span>
+        <span class="tb-summary-chip__value">{{ getCount(2) }}</span>
+      </div>
+    </div>
+
+    <!-- BOOKING CARDS -->
+    <div *ngFor="let booking of result.bookings; let i = index" class="tb-card tb-booking">
+      <!-- Left accent bar color by status -->
+      <div
+        class="tb-booking__bar"
+        [class.tb-booking__bar--green]="booking.status === 1"
+        [class.tb-booking__bar--amber]="booking.status === 0"
+        [class.tb-booking__bar--red]="booking.status === 2"
+        [class.tb-booking__bar--blue]="booking.status === 3"
+      ></div>
+
+      <div class="tb-booking__content">
+        <!-- Top row -->
+        <div class="tb-booking__header">
+          <div>
+            <span class="tb-booking__num">#{{ i + 1 }}</span>
+            <span class="tb-booking__type">{{ booking.eventType }}</span>
+            <span class="tb-booking__date">
+              <i class="fa fa-calendar-alt"></i>
+              {{ booking.eventDate | date:'dd MMM yyyy' }}
+            </span>
+          </div>
+          <span class="tb-status-badge" [ngClass]="getStatusClass(booking.status)">
+            {{ getStatusLabel(booking.status) }}
+          </span>
+        </div>
+
+        <!-- Details row -->
+        <div class="tb-booking__details">
+          <div class="tb-detail">
+            <span class="tb-detail__label">Venue</span>
+            <span class="tb-detail__value tb-detail__value--bold">{{ booking.marqueeName }}</span>
+          </div>
+
+          <div class="tb-detail">
+            <span class="tb-detail__label">Location</span>
+            <span class="tb-detail__value">{{ booking.marqueeLocation }}</span>
+          </div>
+
+          <div class="tb-detail">
+            <span class="tb-detail__label">Guests</span>
+            <span class="tb-detail__value">{{ booking.guestCount }}</span>
+          </div>
+
+          <!-- Hall charge — calculated from marquee price / capacity × guests -->
+          <div class="tb-detail">
+            <span class="tb-detail__label">Hall Charge</span>
+            <span class="tb-detail__value" style="color: #2563eb; font-weight: 600">
+              Rs. {{ booking.hallCharge | number:'1.0-0' }}
+            </span>
+            <!-- Small note showing the math so admin understands -->
+            <span style="font-size: 0.68rem; color: #94a3b8; margin-top: 2px">
+              ({{ booking.marqueePricePerDay | number }}/{{ booking.marqueeCapacity }} × {{
+              booking.guestCount }})
+            </span>
+          </div>
+
+          <!-- Food total — sum of all menu option line totals -->
+          <div class="tb-detail">
+            <span class="tb-detail__label">Food Total</span>
+            <span class="tb-detail__value" style="color: #c9963a; font-weight: 600">
+              Rs. {{ booking.foodTotal | number:'1.0-0' }}
+            </span>
+          </div>
+
+          <!-- Grand total — hall + food -->
+          <div class="tb-detail">
+            <span class="tb-detail__label">Grand Total</span>
+            <span
+              class="tb-detail__value"
+              style="color: #16a34a; font-weight: 700; font-size: 1.05rem"
+            >
+              Rs. {{ booking.grandTotal | number:'1.0-0' }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Menu items — show each item with line total -->
+        <div *ngIf="booking.menuOptions && booking.menuOptions.length > 0" class="tb-menu">
+          <span class="tb-menu__label"> <i class="fa fa-utensils"></i> Menu Ordered </span>
+          <div class="tb-menu__chips">
+            <span *ngFor="let item of booking.menuOptions" class="tb-menu__chip">
+              {{ item.menuItemName }}
+              <span class="tb-menu__qty">× {{ item.quantity }}</span>
+              <!-- line total per item -->
+              <span style="color: #16a34a; font-weight: 700; margin-left: 6px">
+                Rs. {{ item.lineTotal | number:'1.0-0' }}
+              </span>
+            </span>
+          </div>
+        </div>
+        <!-- Menu items — compact chips -->
+        <!-- <div *ngIf="booking.menuOptions && booking.menuOptions.length > 0" class="tb-menu">
+          <span class="tb-menu__label"> <i class="fa fa-utensils"></i> Menu Ordered </span>
+          <div class="tb-menu__chips">
+            <span *ngFor="let item of booking.menuOptions" class="tb-menu__chip">
+              {{ item.menuItemName }}
+              <span class="tb-menu__qty">× {{ item.quantity }}</span>
+            </span>
+          </div>
+        </div> -->
+
+        <div *ngIf="!booking.menuOptions || booking.menuOptions.length === 0" class="tb-menu">
+          <span class="tb-menu__empty">No menu items recorded for this booking.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</abp-page>

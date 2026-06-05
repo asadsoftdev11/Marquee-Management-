@@ -1,0 +1,108 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.3.6",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.3.6",
+      "isInstalled": true,
+      "creationTime": "02/16/2026 10:48:17 +00:00"
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.3.6",
+      "isInstalled": true,
+      "creationTime": "02/16/2026 10:48:17 +00:00"
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.3.6",
+      "isInstalled": true,
+      "creationTime": "02/16/2026 10:48:17 +00:00"
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.3.6",
+      "isInstalled": true,
+      "creationTime": "02/16/2026 10:48:17 +00:00"
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.3.6",
+      "isInstalled": true,
+      "creationTime": "02/16/2026 10:48:17 +00:00"
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.3.6",
+      "isInstalled": true,
+      "creationTime": "02/16/2026 10:48:17 +00:00"
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.3.6",
+      "isInstalled": true,
+      "creationTime": "02/16/2026 10:48:17 +00:00"
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "MarqueeManagement.Application": {
+      "path": "src/MarqueeManagement.Application/MarqueeManagement.Application.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.Application.Tests": {
+      "path": "test/MarqueeManagement.Application.Tests/MarqueeManagement.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "MarqueeManagement.Domain.Shared": {
+      "path": "src/MarqueeManagement.Domain.Shared/MarqueeManagement.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.Application.Contracts": {
+      "path": "src/MarqueeManagement.Application.Contracts/MarqueeManagement.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.HttpApi": {
+      "path": "src/MarqueeManagement.HttpApi/MarqueeManagement.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.HttpApi.Client": {
+      "path": "src/MarqueeManagement.HttpApi.Client/MarqueeManagement.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.EntityFrameworkCore.Tests": {
+      "path": "test/MarqueeManagement.EntityFrameworkCore.Tests/MarqueeManagement.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "MarqueeManagement.EntityFrameworkCore": {
+      "path": "src/MarqueeManagement.EntityFrameworkCore/MarqueeManagement.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.TestBase": {
+      "path": "test/MarqueeManagement.TestBase/MarqueeManagement.TestBase.abppkg",
+      "folder": "test"
+    },
+    "MarqueeManagement.Domain.Tests": {
+      "path": "test/MarqueeManagement.Domain.Tests/MarqueeManagement.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "MarqueeManagement.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/MarqueeManagement.HttpApi.Client.ConsoleTestApp/MarqueeManagement.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "MarqueeManagement.DbMigrator": {
+      "path": "src/MarqueeManagement.DbMigrator/MarqueeManagement.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.HttpApi.Host": {
+      "path": "src/MarqueeManagement.HttpApi.Host/MarqueeManagement.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "MarqueeManagement.Domain": {
+      "path": "src/MarqueeManagement.Domain/MarqueeManagement.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

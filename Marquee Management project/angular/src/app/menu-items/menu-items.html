@@ -1,0 +1,269 @@
+<abp-page [title]="'🍽️Menu Items'">
+  <!-- Toolbar -->
+  <abp-page-toolbar-container class="col">
+    <div class="text-end">
+      <button class="btn btn-outline-primary btn-sm" type="button" (click)="createMenuItem()">
+        ➕ Add New
+      </button>
+    </div>
+  </abp-page-toolbar-container>
+
+  <!-- Search + Filters -->
+  <div class="card">
+    <div class="card-body">
+      <!-- Top Row -->
+      <div class="row mb-2">
+        <div class="col-10">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search Here"
+              [(ngModel)]="filters.filter"
+            />
+            <button class="btn btn-primary" (click)="list.get()">
+              <i class="fas fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-2 text-end">
+          <button class="btn btn-outline-info w-100" (click)="showFilter = !showFilter">
+            <i class="fas fa-sliders me-1"></i>
+            Filters <i class="fas" [ngClass]="showFilter ? 'fa-angle-up' : 'fa-angle-down'"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Panel -->
+      <div *ngIf="showFilter" class="mt-3">
+        <div class="row g-2">
+          <!-- Name -->
+          <div class="col-sm-4">
+            <label><i class="fas fa-utensils me-1 text-warning"></i> Name</label>
+            <input class="form-control form-control-sm" [(ngModel)]="filters.name" />
+          </div>
+
+          <!-- Available -->
+          <div class="col-sm-4">
+            <label><i class="fas fa-circle-check me-1 text-success"></i> Available</label>
+            <select class="form-control form-control-sm" [(ngModel)]="filters.isAvailable">
+              <option [ngValue]="null">All</option>
+              <option [ngValue]="true">Available</option>
+              <option [ngValue]="false">Not Available</option>
+            </select>
+          </div>
+
+          <!-- Buttons -->
+          <div class="col-sm-auto d-flex align-items-end gap-1">
+            <button class="btn btn-sm btn-outline-secondary" (click)="clearFilters()">
+              <i class="fas fa-undo"></i> Reset
+            </button>
+            <button type="button" class="btn btn-success btn-sm" (click)="list.get()">
+              <i class="fa fa-filter"></i> Apply
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="card mt-2">
+    <div class="card-body">
+      <ngx-datatable [rows]="menuItems.items" [count]="menuItems.totalCount" [list]="list" default>
+        <!-- ACTIONS -->
+        <ngx-datatable-column name="Actions" [maxWidth]="150" [sortable]="false">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div ngbDropdown container="body">
+              <button class="btn btn-primary btn-sm dropdown-toggle" ngbDropdownToggle>
+                <i class="fas fa-gear me-1"></i> Actions
+              </button>
+              <div ngbDropdownMenu>
+                <button ngbDropdownItem (click)="editMenuItem(row.id)">
+                  <i class="fas fa-edit me-2 text-info"></i> Edit
+                </button>
+                <button class="text-danger" ngbDropdownItem (click)="delete(row.id)">
+                  <i class="fas fa-trash me-2"></i> Delete
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- DATA -->
+        <ngx-datatable-column name="Name" [width]="250">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <div class="d-flex align-items-center gap-3">
+              <!-- Image + Preview Link -->
+              <div class="menu-img-container">
+                <ng-container *ngIf="row.imageUrl; else noImg">
+                  <img [src]="row.imageUrl" (error)="onImgError($event)" class="menu-img" />
+                  <a
+                    [href]="row.imageUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="table-preview-link"
+                  >
+                    Preview
+                  </a>
+                </ng-container>
+
+                <ng-template #noImg> <div class="no-img-placeholder">🍽️</div> </ng-template>
+              </div>
+
+              <!-- Text Info -->
+              <div>
+                <div class="fw-semibold menu-name">{{ row.name }}</div>
+                <div style="font-size: 0.72rem; color: #c9963a">{{ row.menuCategoryName }}</div>
+              </div>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="description" [width]="400">
+          <ng-template ngx-datatable-header-template>
+            <i class="fas fa-align-left me-1 text-primary"></i>
+            Description
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="price">
+          <ng-template ngx-datatable-header-template>
+            <i class="fas fa-money-bill-wave me-1 text-danger"></i>
+            Price
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Available" prop="isAvailable">
+          <ng-template ngx-datatable-header-template>
+            <i class="fas fa-circle-check me-1 text-success"></i>
+            Available
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row.isAvailable ? 'Yes' : 'No' }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!--RELATION COLUMN -->
+        <ngx-datatable-column prop="menuCategoryName">
+          <ng-template ngx-datatable-header-template>
+            <i class="fas fa-layer-group me-1 text-info"></i>
+            Category
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</abp-page>
+
+<!-- MODAL -->
+<abp-modal [(visible)]="isModalOpen">
+  <ng-template #abpHeader>
+    <i class="fas fa-utensils"></i>
+    <h3>{{ selectedMenuItem.id ? 'Edit' : 'New' }}</h3>
+  </ng-template>
+
+  <ng-template #abpBody>
+    <form [formGroup]="form">
+      <div class="row">
+        <!-- Name -->
+        <div class="col-md-6 mb-3">
+          <label>Name *</label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="fas fa-utensils"></i>
+            </span>
+
+            <input class="form-control" formControlName="name" />
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-6 mb-3">
+          <label>Price *</label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="fas fa-money-bill-wave"></i>
+            </span>
+
+            <input type="number" class="form-control" formControlName="price" />
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="col-md-12 mb-3">
+          <label>Description</label>
+          <div class="position-relative">
+            <i class="fas fa-align-left textarea-icon"></i>
+
+            <textarea class="form-control ps-5" formControlName="description" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-3">
+          <label class="form-label form-label-custom">
+            Image URL <span class="optional-text">(optional)</span>
+          </label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="fas fa-image"></i>
+            </span>
+
+            <input
+              class="form-control form-control-custom"
+              formControlName="imageUrl"
+              placeholder="e.g. https://example.com/image.webp"
+            />
+          </div>
+
+          <div *ngIf="form.get('imageUrl')?.value" class="preview-container">
+            <img
+              [src]="form.get('imageUrl').value"
+              class="preview-img"
+              (error)="onImgError($event)"
+            />
+            <a
+              [href]="form.get('imageUrl').value"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="preview-link"
+            >
+              Preview
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-3">
+          <label class="form-label d-block mb-2">Available</label>
+
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input me-2"
+              formControlName="isAvailable"
+              id="isAvailableCheck"
+            />
+            <label class="form-check-label" for="isAvailableCheck"> Is Available </label>
+          </div>
+        </div>
+
+        <!--RELATION DROPDOWN -->
+        <div class="col-md-6 mb-3">
+          <label>Category *</label>
+          <select class="form-control" formControlName="menuCategoryId">
+            <option [ngValue]="null">Select Category</option>
+            <option *ngFor="let c of menuCategories" [ngValue]="c.id">{{ c.name }}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #abpFooter>
+    <button class="btn btn-secondary" (click)="isModalOpen=false">
+      <i class="fas fa-xmark me-1"></i>Cancel
+    </button>
+    <button class="btn btn-success" (click)="save()" [disabled]="form.invalid">
+      <i class="fas fa-floppy-disk me-1"></i> Save
+    </button>
+  </ng-template>
+</abp-modal>
