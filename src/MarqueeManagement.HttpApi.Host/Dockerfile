@@ -10,15 +10,16 @@ WORKDIR /src
 
 COPY . .
 
-RUN dotnet restore "src/MarqueeManagement.HttpApi.Host/MarqueeManagement.HttpApi.Host.csproj"
-RUN dotnet publish "src/MarqueeManagement.HttpApi.Host/MarqueeManagement.HttpApi.Host.csproj" \
-    -c Release -o /app/publish
+RUN dotnet restore "MarqueeManagement.HttpApi.Host.csproj"
 
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+RUN dotnet publish "MarqueeManagement.HttpApi.Host.csproj" -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
+
 COPY --from=build /app/publish .
 
-ENV ASPNETCORE_URLS=http://+:10000
-EXPOSE 10000
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "MarqueeManagement.HttpApi.Host.dll"]
