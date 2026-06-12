@@ -1,18 +1,22 @@
 import { Environment } from '@abp/ng.core';
 
-const baseUrl = 'http://localhost:4200';
+//const baseUrl = 'http://localhost:4200';
+const baseUrl = window.location.origin;
 
 const oAuthConfig = {
-  issuer: 'https://localhost:44380/',
-  redirectUri: baseUrl,
+ // issuer: 'https://localhost:44380/',
+  issuer: 'https://marqueemanagement.runasp.net', 
+ redirectUri: baseUrl,
   clientId: 'MarqueeManagement_App',
   responseType: 'code',
   scope: 'offline_access MarqueeManagement',
-  requireHttps: true,
+ // requireHttps: true,
+ requireHttps: false,
 };
 
 export const environment = {
-  production: false,
+  //production: false,
+   production: true,
   application: {
     baseUrl,
     name: 'MarqueeManagement',
@@ -20,12 +24,17 @@ export const environment = {
   oAuthConfig,
   apis: {
     default: {
-      url: 'https://localhost:44380',
-      rootNamespace: 'MarqueeManagement',
+     //url: 'https://localhost:44380',
+       url: 'https://marqueemanagement.runasp.net',
+     rootNamespace: 'MarqueeManagement',
     },
     AbpAccountPublic: {
       url: oAuthConfig.issuer,
       rootNamespace: 'AbpAccountPublic',
     },
   },
+    remoteEnv: {
+    url: '/getEnvConfig',
+    mergeStrategy: 'deepmerge'
+  }
 } as Environment;

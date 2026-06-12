@@ -72,6 +72,19 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
             });
         });
 
+        //if (!hostingEnvironment.IsDevelopment())
+        //{
+        //    PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
+        //    {
+        //        options.AddDevelopmentEncryptionAndSigningCertificate = false;
+        //    });
+
+        //    PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
+        //    {
+        //        serverBuilder.AddProductionEncryptionAndSigningCertificate("openiddict.pfx", configuration["AuthServer:CertificatePassPhrase"]!);
+        //        serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
+        //    });
+        //}
         if (!hostingEnvironment.IsDevelopment())
         {
             PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
@@ -81,7 +94,9 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
 
             PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
             {
-                serverBuilder.AddProductionEncryptionAndSigningCertificate("openiddict.pfx", configuration["AuthServer:CertificatePassPhrase"]!);
+                serverBuilder.AddEphemeralEncryptionKey()
+                             .AddEphemeralSigningKey();
+
                 serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
             });
         }
