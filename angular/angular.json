@@ -21,9 +21,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": {
-              "base": "dist/MarqueeManagement"
-            },
+            "outputPath": "dist/MarqueeManagement",
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
