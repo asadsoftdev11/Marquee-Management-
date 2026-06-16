@@ -9,7 +9,7 @@ const oAuthConfig = {
  redirectUri: baseUrl,
   clientId: 'MarqueeManagement_App',
   responseType: 'code',
-  scope: 'offline_access MarqueeManagement',
+  scope: 'offline_access openid profile email phone roles',
  // requireHttps: true,
  requireHttps: false,
 };
@@ -18,7 +18,7 @@ export const environment = {
   //production: false,
    production: true,
   application: {
-    baseUrl,
+    baseUrl: 'https://marquee-management.netlify.app',
     name: 'MarqueeManagement',
   },
   oAuthConfig,

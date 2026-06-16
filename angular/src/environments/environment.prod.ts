@@ -1,6 +1,6 @@
 import { Environment } from '@abp/ng.core';
 
-const baseUrl = 'http://localhost:4200';
+const baseUrl = 'https://marquee-management.netlify.app';
 
 const oAuthConfig = {
  //issuer: 'https://localhost:44380/',
@@ -9,14 +9,14 @@ const oAuthConfig = {
  redirectUri: window.location.origin,
   clientId: 'MarqueeManagement_App',
   responseType: 'code',
-  scope: 'offline_access MarqueeManagement',
+  scope: 'offline_access openid profile email phone roles',
   requireHttps: true,
 };
 
 export const environment = {
   production: true,
   application: {
-    baseUrl,
+    baseUrl: 'https://marquee-management.netlify.app',
     name: 'MarqueeManagement',
   },
   oAuthConfig,
