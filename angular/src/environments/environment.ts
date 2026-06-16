@@ -4,19 +4,18 @@ import { Environment } from '@abp/ng.core';
 const baseUrl = window.location.origin;
 
 const oAuthConfig = {
- // issuer: 'https://localhost:44380/',
-  issuer: 'https://marqueemanagement.runasp.net', 
- redirectUri: baseUrl,
+  // issuer: 'https://localhost:44380/',
+  issuer: 'https://marqueemanagement.runasp.net',
+  redirectUri: baseUrl,
   clientId: 'MarqueeManagement_App',
   responseType: 'code',
   scope: 'offline_access openid profile email phone roles',
- // requireHttps: true,
- requireHttps: false,
+  requireHttps: true,
 };
 
 export const environment = {
   //production: false,
-   production: true,
+  production: true,
   application: {
     baseUrl: 'https://marquee-management.netlify.app',
     name: 'MarqueeManagement',
@@ -24,17 +23,17 @@ export const environment = {
   oAuthConfig,
   apis: {
     default: {
-     //url: 'https://localhost:44380',
-       url: 'https://marqueemanagement.runasp.net',
-     rootNamespace: 'MarqueeManagement',
+      //url: 'https://localhost:44380',
+      url: 'https://marqueemanagement.runasp.net',
+      rootNamespace: 'MarqueeManagement',
     },
     AbpAccountPublic: {
       url: oAuthConfig.issuer,
       rootNamespace: 'AbpAccountPublic',
     },
   },
-    remoteEnv: {
+  remoteEnv: {
     url: '/getEnvConfig',
-    mergeStrategy: 'deepmerge'
-  }
+    mergeStrategy: 'deepmerge',
+  },
 } as Environment;
