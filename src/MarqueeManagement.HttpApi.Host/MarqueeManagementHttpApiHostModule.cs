@@ -72,19 +72,6 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
             });
         });
 
-        //if (!hostingEnvironment.IsDevelopment())
-        //{
-        //    PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
-        //    {
-        //        options.AddDevelopmentEncryptionAndSigningCertificate = false;
-        //    });
-
-        //    PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
-        //    {
-        //        serverBuilder.AddProductionEncryptionAndSigningCertificate("openiddict.pfx", configuration["AuthServer:CertificatePassPhrase"]!);
-        //        serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
-        //    });
-        //}
         if (!hostingEnvironment.IsDevelopment())
         {
             PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
@@ -120,18 +107,26 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
             options.Kind = DateTimeKind.Utc;
         });
 
+
+        Configure<ForwardedHeadersOptions>(options =>
+        {
+            options.ForwardedHeaders =
+                ForwardedHeaders.XForwardedFor |
+                ForwardedHeaders.XForwardedProto |
+                ForwardedHeaders.XForwardedHost;
+
+            options.KnownNetworks.Clear();
+            options.KnownProxies.Clear();
+        });
+
         if (!configuration.GetValue<bool>("AuthServer:RequireHttpsMetadata"))
         {
             Configure<OpenIddictServerAspNetCoreOptions>(options =>
             {
                 options.DisableTransportSecurityRequirement = true;
             });
-            
-            Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedProto;
-            });
         }
+
 
         ConfigureAuthentication(context);
         ConfigureUrls(configuration);
