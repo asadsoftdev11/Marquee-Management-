@@ -52,5 +52,9 @@
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Content Include="openiddict.pfx" />
+  </ItemGroup>
 
 </Project>
