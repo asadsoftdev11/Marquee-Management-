@@ -56,6 +56,7 @@
   <ItemGroup>
     <Content Include="openiddict.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 
