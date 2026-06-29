@@ -5,12 +5,12 @@ export const APP_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    canActivate: [authGuard],
+   // canActivate: [authGuard],
     loadComponent: () => import('./home/home.component').then(c => c.HomeComponent),
   },
   {
     path: 'account',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () => import('@abp/ng.account').then(c => c.createRoutes()),
   },
   {
