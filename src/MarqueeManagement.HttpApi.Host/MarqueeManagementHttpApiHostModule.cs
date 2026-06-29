@@ -81,19 +81,9 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
 
             PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
             {
-                try
-                {
-                    serverBuilder.AddProductionEncryptionAndSigningCertificate(
-                   "openiddict.pfx",
-                    configuration["AuthServer:CertificatePassPhrase"]!,
-                    X509KeyStorageFlags.UserKeySet | X509KeyStorageFlags.Exportable
-                    );
-                }
-                catch ( Exception ex )
-                {
-                    Console.WriteLine(ex.ToString() );
-                    throw;
-                }
+                serverBuilder
+                    .AddEphemeralEncryptionKey()
+                    .AddEphemeralSigningKey();
 
                 serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
             });

@@ -53,11 +53,11 @@
     <None Remove="Logs\**" />
   </ItemGroup>
 	
-  <ItemGroup>
+  <!--<ItemGroup>
     <Content Include="openiddict.pfx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>

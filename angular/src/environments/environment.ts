@@ -1,31 +1,35 @@
 import { Environment } from '@abp/ng.core';
 
-const baseUrl = window.location.origin;
+const baseUrl = 'https://marquee-management.netlify.app';
+const apiUrl = 'https://marqueemanagement.runasp.net';
 
 const oAuthConfig = {
-  issuer: 'https://marqueemanagement.runasp.net',
+  issuer: apiUrl,
   redirectUri: baseUrl,
   clientId: 'MarqueeManagement_App',
   responseType: 'code',
-  scope: 'offline_access openid profile email phone roles',
+  scope: 'offline_access openid profile email phone roles MarqueeManagement',
   requireHttps: true,
 };
 
 export const environment = {
   production: true,
+
   application: {
-    baseUrl: 'https://marquee-management.netlify.app',
+    baseUrl,
     name: 'MarqueeManagement',
   },
+
   oAuthConfig,
+
   apis: {
     default: {
-
-      url: 'https://marqueemanagement.runasp.net',
+      url: apiUrl,
       rootNamespace: 'MarqueeManagement',
     },
+
     AbpAccountPublic: {
-      url: oAuthConfig.issuer,
+      url: apiUrl,
       rootNamespace: 'AbpAccountPublic',
     },
   },
