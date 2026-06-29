@@ -45,10 +45,6 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Studio.Client.AspNetCore" Version="1.4.2" />
   </ItemGroup>
-
-	<ItemGroup>
-		<None Include="openiddict.pfx" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
-	</ItemGroup>
 	
   <ItemGroup>
     <Compile Remove="Logs\**" />
@@ -56,12 +52,5 @@
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
   </ItemGroup>
-
-	<ItemGroup>
-		<None Update="openiddict.pfx">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
-		</None>
-	</ItemGroup>
 
 </Project>
