@@ -14,20 +14,16 @@ const oAuthConfig = {
 
 export const environment = {
   production: true,
-
   application: {
     baseUrl,
     name: 'MarqueeManagement',
   },
-
   oAuthConfig,
-
   apis: {
     default: {
       url: apiUrl,
       rootNamespace: 'MarqueeManagement',
     },
-
     AbpAccountPublic: {
       url: apiUrl,
       rootNamespace: 'AbpAccountPublic',

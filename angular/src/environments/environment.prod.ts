@@ -18,19 +18,15 @@ export const environment = {
     baseUrl,
     name: 'MarqueeManagement',
   },
-
   oAuthConfig,
-
   apis: {
     default: {
-     url: apiUrl,
+      url: apiUrl,
       rootNamespace: 'MarqueeManagement',
     },
-    
     AbpAccountPublic: {
-      url: oAuthConfig.issuer,
+      url: apiUrl,
       rootNamespace: 'AbpAccountPublic',
     },
   },
-
 } as Environment;
