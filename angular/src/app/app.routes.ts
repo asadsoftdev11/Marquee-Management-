@@ -29,31 +29,37 @@ export const APP_ROUTES: Routes = [
 {
   path: 'marquees',
   canActivate: [authGuard, permissionGuard],
+  data: { requiredPolicy: 'MarqueeManagement.Marquees' },
   loadComponent: () => import('./marquees/marquees').then(c => c.Marquees),
 },
 {
   path: 'customers',
   canActivate: [authGuard, permissionGuard],
+  data: { requiredPolicy: 'MarqueeManagement.Customers' },
   loadComponent: () => import('./customers/customers').then(c => c.Customers),
 },
 {
   path: 'menu-items',
   canActivate: [authGuard, permissionGuard],
+  data: { requiredPolicy: 'MarqueeManagement.MenuCategories' },
   loadComponent: () => import('./menu-items/menu-items').then(c => c.MenuItems),
 },
 {
   path: 'menu-categories',
   canActivate: [authGuard, permissionGuard],
+  data: { requiredPolicy: 'MarqueeManagement.MenuItems' },
   loadComponent: () => import('./menu-categories/menu-categories').then(c => c.MenuCategories),
 },
 {
   path: 'bookings',
   canActivate: [authGuard, permissionGuard],
+  data: { requiredPolicy: 'MarqueeManagement.Bookings' },
   loadComponent: () => import('./bookings/bookings').then(c => c.Bookings),
 },
 {
   path: 'booking-menu-options',
   canActivate: [authGuard, permissionGuard],
+  data: { requiredPolicy: 'MarqueeManagement.BookingMenuOptions' },
   loadComponent: () => import('./booking-menu-options/booking-menu-options').then(c => c.BookingMenuOptions),
 },
 {
