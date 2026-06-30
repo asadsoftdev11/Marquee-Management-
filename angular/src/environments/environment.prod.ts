@@ -1,6 +1,6 @@
 import { Environment } from '@abp/ng.core';
 
-const baseUrl = 'https://marquee-management.netlify.app';
+const baseUrl = 'https://marquee-management-rho.vercel.app';
 const apiUrl = 'https://marqueemanagement.runasp.net';
 
 const oAuthConfig = {
