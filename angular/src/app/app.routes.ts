@@ -41,13 +41,13 @@ export const APP_ROUTES: Routes = [
 {
   path: 'menu-items',
   canActivate: [authGuard, permissionGuard],
-  data: { requiredPolicy: 'MarqueeManagement.MenuCategories' },
+   data: { requiredPolicy: 'MarqueeManagement.MenuItems' },
   loadComponent: () => import('./menu-items/menu-items').then(c => c.MenuItems),
 },
 {
   path: 'menu-categories',
   canActivate: [authGuard, permissionGuard],
-  data: { requiredPolicy: 'MarqueeManagement.MenuItems' },
+   data: { requiredPolicy: 'MarqueeManagement.MenuCategories' },
   loadComponent: () => import('./menu-categories/menu-categories').then(c => c.MenuCategories),
 },
 {
