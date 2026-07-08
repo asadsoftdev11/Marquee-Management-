@@ -4,7 +4,7 @@ const baseUrl = 'https://marquee-management-rho.vercel.app';
 const apiUrl = 'https://marqueemanagement.runasp.net';
 
 const oAuthConfig = {
-  issuer: apiUrl,
+  issuer: apiUrl + '/',
   redirectUri: baseUrl,
   clientId: 'MarqueeManagement_App',
   responseType: 'code',
