@@ -10,6 +10,7 @@ const oAuthConfig = {
   responseType: 'code',
   scope: 'offline_access openid profile email phone roles MarqueeManagement',
   requireHttps: true,
+  strictDiscoveryDocumentValidation: false,
 };
 
 export const environment = {
