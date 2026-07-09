@@ -8,4 +8,6 @@ public static class MarqueeManagementConsts
     public const string? DbSchema = null;
     public const string AdminEmailDefaultValue = IdentityDataSeedContributor.AdminEmailDefaultValue;
     public const string AdminPasswordDefaultValue = IdentityDataSeedContributor.AdminPasswordDefaultValue;
+    public const string FileUploadPath = "uploads";
+
 }

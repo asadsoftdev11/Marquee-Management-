@@ -267,6 +267,7 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
 
         app.UseRouting();
         app.MapAbpStaticAssets();
+        app.UseStaticFiles();
         app.UseAbpStudioLink();
         app.UseAbpSecurityHeaders();
         app.UseCors();

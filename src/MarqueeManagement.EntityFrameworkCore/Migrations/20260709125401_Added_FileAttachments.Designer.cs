@@ -3,6 +3,7 @@ using System;
 using MarqueeManagement.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace MarqueeManagement.Migrations
 {
     [DbContext(typeof(MarqueeManagementDbContext))]
-    partial class MarqueeManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260709125401_Added_FileAttachments")]
+    partial class Added_FileAttachments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,24 +261,6 @@ namespace MarqueeManagement.Migrations
                     b.HasIndex("Phone");
 
                     b.ToTable("AppCustomers", (string)null);
-                });
-
-            modelBuilder.Entity("MarqueeManagement.FileAttachments.CustomerAttachment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("FileAttachmentId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("AppCustomerAttachments", (string)null);
                 });
 
             modelBuilder.Entity("MarqueeManagement.FileAttachments.FileAttachment", b =>

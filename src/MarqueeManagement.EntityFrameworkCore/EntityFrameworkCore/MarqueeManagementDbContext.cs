@@ -20,6 +20,7 @@ using MarqueeManagement.MenuItems;
 using MarqueeManagement.Bookings;
 using MarqueeManagement.MenuCategories;
 using MarqueeManagement.BookingMenuOptions;
+using MarqueeManagement.FileAttachments;
 
 namespace MarqueeManagement.EntityFrameworkCore;
 
@@ -68,6 +69,8 @@ public class MarqueeManagementDbContext :
     public DbSet<Marquee> Marquees { get; set; }
     public DbSet<MenuItem> MenuItems { get; set; }
     public DbSet<Customer> Customers { get; set; }
+    public DbSet<FileAttachment> FileAttachments { get; set; }
+    public DbSet<CustomerAttachment> CustomerAttachments { get; set; }
     public MarqueeManagementDbContext(DbContextOptions<MarqueeManagementDbContext> options)
         : base(options)
     {
@@ -91,6 +94,63 @@ public class MarqueeManagementDbContext :
         builder.ConfigureBlobStoring();
 
         /* Configure your own tables/entities inside here */
+     
+        builder.Entity<FileAttachment>(b =>
+        {
+            b.ToTable(
+                MarqueeManagementConsts.DbTablePrefix + "FileAttachments",
+                MarqueeManagementConsts.DbSchema);
+
+            b.ConfigureByConvention();
+
+            b.Property(x => x.FileName)
+                .IsRequired()
+                .HasMaxLength(FileAttachmentConsts.MaxFileNameLength);
+
+            b.Property(x => x.BlobName)
+                .IsRequired()
+                .HasMaxLength(FileAttachmentConsts.MaxBlobNameLength);
+
+            b.Property(x => x.ContentType)
+                .IsRequired()
+                .HasMaxLength(FileAttachmentConsts.MaxContentTypeLength);
+
+            b.Property(x => x.Size)
+                .IsRequired();
+
+            b.HasIndex(x => x.FileName);
+        });
+
+        builder.Entity<CustomerAttachment>(b =>
+        {
+            b.ToTable(
+                MarqueeManagementConsts.DbTablePrefix + "CustomerAttachments",
+                MarqueeManagementConsts.DbSchema);
+
+            b.ConfigureByConvention();
+
+            b.Property(x => x.TenantId);
+
+            b.Property(x => x.CustomerId)
+                .IsRequired();
+
+            b.Property(x => x.FileAttachmentId)
+                .IsRequired();
+
+            b.HasIndex(x => x.CustomerId);
+            b.HasIndex(x => x.FileAttachmentId);
+
+            b.HasOne(x => x.Customer)
+                .WithMany()
+                .HasForeignKey(x => x.CustomerId)
+                .IsRequired();
+
+            b.HasOne(x => x.FileAttachment)
+                .WithMany()
+                .HasForeignKey(x => x.FileAttachmentId)
+                .IsRequired();
+        });
+
 
         builder.Entity<Booking>(b =>
         {

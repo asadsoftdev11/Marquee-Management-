@@ -165,6 +165,18 @@
             <input class="form-control" formControlName="address" />
           </div>
         </div>
+
+        <!-- File upload -->
+<div class="col-md-6 mb-3">
+
+  <label class="form-label">Attachment</label>
+
+  <input 
+    type="file" 
+    class="form-control" 
+    (change)="onFileSelected($event)" />
+
+</div>
       </div>
     </form>
   </ng-template>

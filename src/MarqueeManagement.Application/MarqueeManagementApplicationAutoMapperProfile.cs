@@ -2,6 +2,7 @@ using AutoMapper;
 using MarqueeManagement.BookingMenuOptions;
 using MarqueeManagement.Bookings;
 using MarqueeManagement.Customers;
+using MarqueeManagement.FileAttachments;
 using MarqueeManagement.Marquees;
 using MarqueeManagement.MenuCategories;
 using MarqueeManagement.MenuItems;
@@ -35,6 +36,8 @@ public class MarqueeManagementApplicationAutoMapperProfile : Profile
         CreateMap<MenuItem, MenuItemDto>()
         .ForMember(dest => dest.MenuCategoryName,
         opt => opt.MapFrom(src => src.MenuCategory.Name));
+
+        CreateMap<CustomerAttachment, CustomerAttachmentDto>();
 
     }
 }

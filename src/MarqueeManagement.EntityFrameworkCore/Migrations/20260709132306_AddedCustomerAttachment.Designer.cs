@@ -3,6 +3,7 @@ using System;
 using MarqueeManagement.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace MarqueeManagement.Migrations
 {
     [DbContext(typeof(MarqueeManagementDbContext))]
-    partial class MarqueeManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260709132306_AddedCustomerAttachment")]
+    partial class AddedCustomerAttachment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
