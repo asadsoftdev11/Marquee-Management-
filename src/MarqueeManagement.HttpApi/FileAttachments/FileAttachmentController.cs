@@ -17,7 +17,8 @@ public class FileAttachmentController : AbpController
     }
 
     [HttpPost("upload")]
-    public async Task<FileAttachmentDto> UploadAsync(IFormFile file)
+    [Consumes("multipart/form-data")]
+    public async Task<FileAttachmentDto> UploadAsync([FromForm] IFormFile file)
     {
         return await _fileAttachmentAppService.UploadAsync(
             file.OpenReadStream(),
