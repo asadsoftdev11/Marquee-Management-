@@ -70,6 +70,18 @@
                 <button ngbDropdownItem (click)="editCustomer(row.id)">
                   <i class="fas fa-edit me-2 text-info"></i>Edit
                 </button>
+                 <button ngbDropdownItem
+                *ngIf="row.fileAttachmentId"
+                (click)="previewFile(row.fileAttachmentId)">
+               <i class="fas fa-eye me-2 text-success"></i>Preview
+              </button>
+
+          <a ngbDropdownItem
+            *ngIf="row.fileAttachmentId"
+            [href]="apiUrl + '/api/app/file-attachment/download/' + row.fileAttachmentId"
+            target="_blank">
+           <i class="fas fa-download me-2 text-primary"></i>Download
+          </a>
                 <button class="text-danger" ngbDropdownItem (click)="delete(row.id)">
                   <i class="fas fa-trash me-2"></i>Delete
                 </button>
@@ -166,18 +178,35 @@
           </div>
         </div>
 
-        <!-- File upload -->
+ <!-- customers.html — replace the existing file upload div inside modal -->
 <div class="col-md-6 mb-3">
-
   <label class="form-label">Attachment</label>
 
-  <input 
-    type="file" 
-    class="form-control" 
+  <input
+    type="file"
+    class="form-control"
+    #fileInput
+    accept="image/*,.pdf,.doc,.docx"
     (change)="onFileSelected($event)" />
 
+  <div *ngIf="selectedFile" class="mt-2 d-flex align-items-center gap-2">
+
+    <img *ngIf="previewUrl" [src]="previewUrl"
+      style="width:52px; height:52px; object-fit:cover; border-radius:8px; border:1.5px solid #ddd;" />
+    <i *ngIf="!previewUrl" class="fas fa-file-alt"
+      style="font-size:2rem; color:#147196;"></i>
+
+    <span style="font-size:.82rem; color:#334155; flex:1;">
+      {{ selectedFile.name }}
+    </span>
+
+    <button type="button" class="btn btn-sm btn-outline-danger px-2 py-0"
+      (click)="clearFile(fileInput)">
+      <i class="fas fa-xmark"></i>
+    </button>
+
+  </div>
 </div>
-      </div>
     </form>
   </ng-template>
 

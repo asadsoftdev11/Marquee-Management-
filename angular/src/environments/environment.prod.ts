@@ -17,7 +17,7 @@ export const environment = {
   production: true,
   application: {
     baseUrl,
-    name: 'MarqueeManagement',
+    name: 'Marquee Management',
   },
   oAuthConfig,
   apis: {

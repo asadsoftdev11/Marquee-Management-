@@ -37,6 +37,7 @@ public class MarqueeManagementApplicationAutoMapperProfile : Profile
         .ForMember(dest => dest.MenuCategoryName,
         opt => opt.MapFrom(src => src.MenuCategory.Name));
 
+        CreateMap<FileAttachment, FileAttachmentDto>();
         CreateMap<CustomerAttachment, CustomerAttachmentDto>();
 
     }

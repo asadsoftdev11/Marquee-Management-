@@ -16,6 +16,7 @@ public class FileAttachment : FullAuditedAggregateRoot<Guid>, IMultiTenant
     public string ContentType { get; private set; }
 
     public long Size { get; private set; }
+    public byte[] FileData { get; private set; }
 
     protected FileAttachment()
     {
@@ -27,7 +28,8 @@ public class FileAttachment : FullAuditedAggregateRoot<Guid>, IMultiTenant
         string fileName,
         string blobName,
         string contentType,
-        long size)
+        long size,
+        byte[] fileData) 
         : base(id)
     {
         TenantId = tenantId;
@@ -48,5 +50,6 @@ public class FileAttachment : FullAuditedAggregateRoot<Guid>, IMultiTenant
             FileAttachmentConsts.MaxContentTypeLength);
 
         Size = size;
+        FileData = fileData;
     }
 }

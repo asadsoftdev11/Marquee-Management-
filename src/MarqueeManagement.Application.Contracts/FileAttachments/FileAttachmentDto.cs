@@ -10,4 +10,5 @@ public class FileAttachmentDto : EntityDto<Guid>
     public string ContentType { get; set; }
 
     public long Size { get; set; }
+    public byte[] FileData { get; set; }
 }

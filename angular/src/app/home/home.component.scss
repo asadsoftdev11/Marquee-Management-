@@ -32,7 +32,7 @@ background:
 .hm-hero { padding: 6rem 0 3rem; }
 .hm-eyebrow { font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:$gold; margin-bottom:1rem; }
 .hm-title { font-size: clamp(2.4rem,5vw,4rem); font-weight:700; line-height:1.1; margin-bottom:1.2rem;
-  span { color:$gold; font-style:italic; } }
+  span { color:$gold; font-style:normal; } }
 .hm-marquee {width: 100%; overflow: hidden; margin-bottom: 2rem; position: relative;}
 .hm-marquee-track { display: inline-block; white-space: nowrap; color: $t2; font-size: 1rem; font-weight: 500; padding-left: 100%;
   animation: marqueeMove 18s linear infinite;}

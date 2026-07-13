@@ -117,6 +117,7 @@ public class MarqueeManagementDbContext :
 
             b.Property(x => x.Size)
                 .IsRequired();
+            b.Property(x => x.FileData).IsRequired();
 
             b.HasIndex(x => x.FileName);
         });
