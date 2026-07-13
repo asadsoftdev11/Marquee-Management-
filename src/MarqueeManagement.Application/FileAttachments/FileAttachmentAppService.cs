@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -8,6 +9,7 @@ using Volo.Abp.MultiTenancy;
 
 namespace MarqueeManagement.FileAttachments;
 
+[RemoteService(IsEnabled = false)]
 public class FileAttachmentAppService :
     CrudAppService<FileAttachment, FileAttachmentDto, Guid,
         PagedAndSortedResultRequestDto, CreateFileAttachmentDto>,

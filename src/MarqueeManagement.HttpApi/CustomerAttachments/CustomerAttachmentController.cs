@@ -1,11 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using MarqueeManagement.FileAttachments;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace MarqueeManagement.FileAttachments;
+namespace MarqueeManagement.CustomerAttachments;
 
+
+[RemoteService(IsEnabled = true)]
+[ControllerName("CustomerAttachments")]
+[Area("app")]
 [Route("api/app/customer-attachment")]
 public class CustomerAttachmentController : AbpController
 {

@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 
 namespace MarqueeManagement.FileAttachments;
 
+
+[RemoteService(IsEnabled = true)]
+[ControllerName("FileAttachments")]
+[Area("app")]
 [Route("api/app/file-attachment")]
 public class FileAttachmentController : AbpController
 {
