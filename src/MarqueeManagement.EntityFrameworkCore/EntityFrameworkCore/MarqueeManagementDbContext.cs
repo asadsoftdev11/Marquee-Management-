@@ -21,6 +21,7 @@ using MarqueeManagement.Bookings;
 using MarqueeManagement.MenuCategories;
 using MarqueeManagement.BookingMenuOptions;
 using MarqueeManagement.FileAttachments;
+using MarqueeManagement.CustomerAttachments;
 
 namespace MarqueeManagement.EntityFrameworkCore;
 

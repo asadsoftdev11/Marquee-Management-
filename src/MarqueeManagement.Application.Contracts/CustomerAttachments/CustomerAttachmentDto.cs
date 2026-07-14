@@ -1,11 +1,13 @@
 ﻿using System;
 using Volo.Abp.Application.Dtos;
 
-namespace MarqueeManagement.FileAttachments;
+namespace MarqueeManagement.CustomerAttachments;
 
-public class CreateCustomerAttachmentDto
+public class CustomerAttachmentDto : EntityDto<Guid>
 {
     public Guid CustomerId { get; set; }
 
     public Guid FileAttachmentId { get; set; }
-}
+
+    
+} 

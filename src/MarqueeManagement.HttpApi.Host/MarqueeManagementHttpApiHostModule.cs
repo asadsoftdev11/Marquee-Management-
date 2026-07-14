@@ -4,6 +4,7 @@ using MarqueeManagement.MultiTenancy;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -92,6 +93,10 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
+        context.Services.AddDataProtection()
+           .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine("DataProtectionKeys")))
+           .SetApplicationName("MarqueeManagement");
+
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
@@ -216,6 +221,7 @@ public class MarqueeManagementHttpApiHostModule : AbpModule
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "MarqueeManagement API", Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
+                options.MapType<byte[]>(() => new OpenApiSchema { Type = "string", Format = "byte" });
             });
     }
 

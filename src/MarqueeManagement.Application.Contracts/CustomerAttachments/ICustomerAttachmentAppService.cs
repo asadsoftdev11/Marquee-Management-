@@ -1,7 +1,7 @@
 ﻿using System;
 using Volo.Abp.Application.Services;
 
-namespace MarqueeManagement.FileAttachments;
+namespace MarqueeManagement.CustomerAttachments;
 
 public interface ICustomerAttachmentAppService :
     ICrudAppService<

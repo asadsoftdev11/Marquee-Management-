@@ -2,7 +2,6 @@
 using System.IO;
 using System.Threading.Tasks;
 using Volo.Abp;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.MultiTenancy;
@@ -10,26 +9,27 @@ using Volo.Abp.MultiTenancy;
 namespace MarqueeManagement.FileAttachments;
 
 [RemoteService(IsEnabled = false)]
-public class FileAttachmentAppService :
-    CrudAppService<FileAttachment, FileAttachmentDto, Guid,
-        PagedAndSortedResultRequestDto, CreateFileAttachmentDto>,
-    IFileAttachmentAppService
+public class FileAttachmentAppService : ApplicationService, IFileAttachmentAppService
 {
+    private readonly IRepository<FileAttachment, Guid> _repository;
     private readonly ICurrentTenant _currentTenant;
 
     public FileAttachmentAppService(
         IRepository<FileAttachment, Guid> repository,
         ICurrentTenant currentTenant)
-        : base(repository)
     {
+        _repository = repository;
         _currentTenant = currentTenant;
     }
 
+    public async Task<FileAttachmentDto> GetAsync(Guid id)
+    {
+        var file = await _repository.GetAsync(id);
+        return ObjectMapper.Map<FileAttachment, FileAttachmentDto>(file);
+    }
+
     public async Task<FileAttachmentDto> UploadAsync(
-        Stream stream,
-        string fileName,
-        string contentType,
-        long size)
+        Stream stream, string fileName, string contentType, long size)
     {
         using var ms = new MemoryStream();
         await stream.CopyToAsync(ms);
@@ -45,8 +45,7 @@ public class FileAttachmentAppService :
             fileBytes
         );
 
-        await Repository.InsertAsync(attachment);
-
+        await _repository.InsertAsync(attachment);
         return ObjectMapper.Map<FileAttachment, FileAttachmentDto>(attachment);
     }
 }

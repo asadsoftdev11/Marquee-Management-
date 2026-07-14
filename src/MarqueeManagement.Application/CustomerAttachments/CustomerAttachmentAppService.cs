@@ -1,11 +1,10 @@
-﻿using MarqueeManagement.FileAttachments;
-using System;
+﻿using System;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace MarqueeManagement.NewFolder;
+namespace MarqueeManagement.CustomerAttachments;
 
 [RemoteService(IsEnabled = false)]
 public class CustomerAttachmentAppService :

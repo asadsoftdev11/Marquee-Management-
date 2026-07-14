@@ -35,6 +35,7 @@ public class FileAttachmentController : AbpController
     }
 
     [HttpGet("download/{id}")]
+    [ApiExplorerSettings(IgnoreApi = false)]
     public async Task<IActionResult> DownloadAsync(Guid id)
     {
         var file = await _fileAttachmentAppService.GetAsync(id);

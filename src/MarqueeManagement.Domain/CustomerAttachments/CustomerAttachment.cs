@@ -1,9 +1,10 @@
 ﻿using System;
 using MarqueeManagement.Customers;
+using MarqueeManagement.FileAttachments;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
-namespace MarqueeManagement.FileAttachments;
+namespace MarqueeManagement.CustomerAttachments;
 
 public class CustomerAttachment :
     FullAuditedAggregateRoot<Guid>,

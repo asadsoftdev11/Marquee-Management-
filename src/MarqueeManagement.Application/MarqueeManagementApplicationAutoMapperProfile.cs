@@ -1,6 +1,7 @@
 using AutoMapper;
 using MarqueeManagement.BookingMenuOptions;
 using MarqueeManagement.Bookings;
+using MarqueeManagement.CustomerAttachments;
 using MarqueeManagement.Customers;
 using MarqueeManagement.FileAttachments;
 using MarqueeManagement.Marquees;

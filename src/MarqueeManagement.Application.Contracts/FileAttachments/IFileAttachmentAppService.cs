@@ -5,13 +5,9 @@ using Volo.Abp.Application.Services;
 
 namespace MarqueeManagement.FileAttachments;
 
-public interface IFileAttachmentAppService :
-    ICrudAppService<
-        FileAttachmentDto,
-        Guid,
-        Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto,
-        CreateFileAttachmentDto>
+public interface IFileAttachmentAppService : IApplicationService
 {
+    Task<FileAttachmentDto> GetAsync(Guid id);
     Task<FileAttachmentDto> UploadAsync(
         Stream stream,
         string fileName,
