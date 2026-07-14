@@ -2744,7 +2744,7 @@
         "MarqueeManagement.CustomerAttachments.CustomerAttachmentController": {
           "controllerName": "CustomerAttachment",
           "controllerGroupName": "CustomerAttachments",
-          "isRemoteService": true,
+          "isRemoteService": false,
           "isIntegrationService": false,
           "apiVersion": null,
           "type": "MarqueeManagement.CustomerAttachments.CustomerAttachmentController",
@@ -2755,7 +2755,9 @@
               "name": "CreateAsync",
               "httpMethod": "POST",
               "url": "api/app/customer-attachment",
-              "supportedVersions": [],
+              "supportedVersions": [
+                "1.0"
+              ],
               "parametersOnMethod": [
                 {
                   "name": "input",
@@ -2769,15 +2771,27 @@
               "parameters": [
                 {
                   "nameOnMethod": "input",
-                  "name": "input",
+                  "name": "CustomerId",
                   "jsonName": null,
-                  "type": "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto",
-                  "typeSimple": "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
-                  "bindingSourceId": "Body",
-                  "descriptorName": ""
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "FileAttachmentId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
                 }
               ],
               "returnValue": {
@@ -2792,7 +2806,9 @@
               "name": "GetListAsync",
               "httpMethod": "GET",
               "url": "api/app/customer-attachment",
-              "supportedVersions": [],
+              "supportedVersions": [
+                "1.0"
+              ],
               "parametersOnMethod": [
                 {
                   "name": "input",
@@ -2813,7 +2829,7 @@
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
+                  "bindingSourceId": "Query",
                   "descriptorName": "input"
                 },
                 {
@@ -2825,7 +2841,7 @@
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
+                  "bindingSourceId": "Query",
                   "descriptorName": "input"
                 },
                 {
@@ -2837,7 +2853,7 @@
                   "isOptional": false,
                   "defaultValue": null,
                   "constraintTypes": null,
-                  "bindingSourceId": "ModelBinding",
+                  "bindingSourceId": "Query",
                   "descriptorName": "input"
                 }
               ],
@@ -2853,7 +2869,9 @@
               "name": "GetAsync",
               "httpMethod": "GET",
               "url": "api/app/customer-attachment/{id}",
-              "supportedVersions": [],
+              "supportedVersions": [
+                "1.0"
+              ],
               "parametersOnMethod": [
                 {
                   "name": "id",
@@ -2890,7 +2908,9 @@
               "name": "DeleteAsync",
               "httpMethod": "DELETE",
               "url": "api/app/customer-attachment/{id}",
-              "supportedVersions": [],
+              "supportedVersions": [
+                "1.0"
+              ],
               "parametersOnMethod": [
                 {
                   "name": "id",
@@ -2927,7 +2947,7 @@
         "MarqueeManagement.FileAttachments.FileAttachmentController": {
           "controllerName": "FileAttachment",
           "controllerGroupName": "FileAttachments",
-          "isRemoteService": true,
+          "isRemoteService": false,
           "isIntegrationService": false,
           "apiVersion": null,
           "type": "MarqueeManagement.FileAttachments.FileAttachmentController",
@@ -2938,7 +2958,9 @@
               "name": "UploadAsync",
               "httpMethod": "POST",
               "url": "api/app/file-attachment/upload",
-              "supportedVersions": [],
+              "supportedVersions": [
+                "1.0"
+              ],
               "parametersOnMethod": [
                 {
                   "name": "file",

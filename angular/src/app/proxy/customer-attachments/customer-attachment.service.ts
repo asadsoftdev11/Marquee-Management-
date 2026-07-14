@@ -14,7 +14,7 @@ export class CustomerAttachmentService {
     this.restService.request<any, CustomerAttachmentDto>({
       method: 'POST',
       url: '/api/app/customer-attachment',
-      body: input,
+      params: { customerId: input.customerId, fileAttachmentId: input.fileAttachmentId },
     },
     { apiName: this.apiName,...config });
   
