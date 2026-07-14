@@ -4,7 +4,7 @@ import { CustomerService, CustomerDto, GetCustomerListDto } from '../proxy/custo
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { CardModule, ConfirmationService, Confirmation, ModalComponent, ToasterService, ThemeSharedModule } from '@abp/ng.theme.shared';
+import { CardModule, ConfirmationService, Confirmation, ToasterService, ThemeSharedModule } from '@abp/ng.theme.shared';
 import { PageModule } from '@abp/ng.components/page';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +18,7 @@ import { firstValueFrom } from 'rxjs';
   host: { class: 'app-dark-page' },
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
-    CardModule, ModalComponent, PageModule,
+    CardModule, PageModule,
     NgbDropdownModule, ThemeSharedModule, NgxDatatableModule,
   ],
   providers: [ListService],
@@ -30,8 +30,6 @@ export class Customers implements OnInit {
   form!: FormGroup;
   selectedCustomer = {} as CustomerDto;
   filters = {} as GetCustomerListDto;
-
-  // file upload
   selectedFile?: File;
   previewUrl: string | null = null;
 
@@ -42,7 +40,7 @@ export class Customers implements OnInit {
     private fb: FormBuilder,
     private confirmation: ConfirmationService,
     private http: HttpClient,
-    private configState: ConfigStateService, 
+    private configState: ConfigStateService,
   ) {}
 
   private get apiUrl(): string {
@@ -66,44 +64,35 @@ export class Customers implements OnInit {
     });
   }
 
-  // file selected
   onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (!file) return;
     this.selectedFile = file;
-
     if (file.type.startsWith('image/')) {
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.previewUrl = e.target.result; 
-      };
+      reader.onload = (e: any) => { this.previewUrl = e.target.result; };
       reader.readAsDataURL(file);
     } else {
-      this.previewUrl = null; 
+      this.previewUrl = null;
     }
   }
 
-  // clear selected file
   clearFile(fileInput: HTMLInputElement): void {
     this.selectedFile = undefined;
     this.previewUrl = null;
     fileInput.value = '';
   }
 
-  // upload file to backend — returns file id from DB
   async uploadFile(): Promise<string | null> {
     if (!this.selectedFile) return null;
-
     const formData = new FormData();
     formData.append('file', this.selectedFile, this.selectedFile.name);
-
     const response = await firstValueFrom(
-      this.http.post<any>(`${this.apiUrl}/api/app/file-attachment/upload`, formData)
+      this.http.post<string>(`${this.apiUrl}/api/app/file-attachment/upload`, formData)
     );
-    return response.id;
+    return response;
   }
 
-  // link file to customer
   saveCustomerAttachment(customerId: string, fileAttachmentId: string): void {
     this.http.post(`${this.apiUrl}/api/app/customer-attachment`, {
       customerId,
@@ -141,13 +130,9 @@ export class Customers implements OnInit {
       });
   }
 
-//to preview image
   previewFile(fileId: string): void {
-  window.open(
-    `${this.apiUrl}/api/app/file-attachment/download/${fileId}`,
-    '_blank'
-  );
-}
+    window.open(`${this.apiUrl}/api/app/file-attachment/download/${fileId}`, '_blank');
+  }
 
   clearFilters(): void {
     this.filters = {} as GetCustomerListDto;
@@ -157,23 +142,18 @@ export class Customers implements OnInit {
 
   async save(): Promise<void> {
     if (this.form.invalid) return;
-
     if (this.selectedCustomer?.id && !this.form.dirty && !this.selectedFile) {
       this.toaster.info('Nothing changed');
       return;
     }
-
     const data = this.form.value;
-
     if (this.selectedCustomer?.id) {
-      // UPDATE existing customer
       this.customerService.update(this.selectedCustomer.id, data).subscribe(async () => {
         const fileId = await this.uploadFile();
-       if (fileId) this.saveCustomerAttachment(this.selectedCustomer.id!, fileId);
+        if (fileId) this.saveCustomerAttachment(this.selectedCustomer.id!, fileId);
         this.afterSave('Updated Successfully');
       });
     } else {
-      // CREATE new customer
       this.customerService.create(data).subscribe(async customer => {
         const fileId = await this.uploadFile();
         if (fileId) this.saveCustomerAttachment(customer.id!, fileId);

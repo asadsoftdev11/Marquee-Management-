@@ -1,9 +1,12 @@
 import * as BookingMenuOptions from './booking-menu-options';
 import * as Bookings from './bookings';
 import * as Controllers from './controllers';
+import * as CustomerAttachments from './customer-attachments';
 import * as Customers from './customers';
+import * as FileAttachments from './file-attachments';
 import * as Marquees from './marquees';
 import * as MenuCategories from './menu-categories';
 import * as MenuItems from './menu-items';
+import * as Microsoft from './microsoft';
 import * as TrackBookings from './track-bookings';
-export { BookingMenuOptions, Bookings, Controllers, Customers, Marquees, MenuCategories, MenuItems, TrackBookings };
+export { BookingMenuOptions, Bookings, Controllers, CustomerAttachments, Customers, FileAttachments, Marquees, MenuCategories, MenuItems, Microsoft, TrackBookings };

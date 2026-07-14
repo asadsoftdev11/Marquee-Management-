@@ -2741,6 +2741,297 @@
             }
           }
         },
+        "MarqueeManagement.CustomerAttachments.CustomerAttachmentController": {
+          "controllerName": "CustomerAttachment",
+          "controllerGroupName": "CustomerAttachments",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "MarqueeManagement.CustomerAttachments.CustomerAttachmentController",
+          "interfaces": [],
+          "actions": {
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/app/customer-attachment",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto, MarqueeManagement.Application.Contracts",
+                  "type": "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto",
+                  "typeSimple": "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto",
+                  "typeSimple": "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "MarqueeManagement.CustomerAttachments.CustomerAttachmentDto",
+                "typeSimple": "MarqueeManagement.CustomerAttachments.CustomerAttachmentDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "MarqueeManagement.CustomerAttachments.CustomerAttachmentController"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/app/customer-attachment",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto, Volo.Abp.Ddd.Application.Contracts",
+                  "type": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                  "typeSimple": "Volo.Abp.Application.Dtos.PagedAndSortedResultRequestDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<MarqueeManagement.CustomerAttachments.CustomerAttachmentDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<MarqueeManagement.CustomerAttachments.CustomerAttachmentDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "MarqueeManagement.CustomerAttachments.CustomerAttachmentController"
+            },
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/app/customer-attachment/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "MarqueeManagement.CustomerAttachments.CustomerAttachmentDto",
+                "typeSimple": "MarqueeManagement.CustomerAttachments.CustomerAttachmentDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "MarqueeManagement.CustomerAttachments.CustomerAttachmentController"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/app/customer-attachment/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "MarqueeManagement.CustomerAttachments.CustomerAttachmentController"
+            }
+          }
+        },
+        "MarqueeManagement.FileAttachments.FileAttachmentController": {
+          "controllerName": "FileAttachment",
+          "controllerGroupName": "FileAttachments",
+          "isRemoteService": true,
+          "isIntegrationService": false,
+          "apiVersion": null,
+          "type": "MarqueeManagement.FileAttachments.FileAttachmentController",
+          "interfaces": [],
+          "actions": {
+            "UploadAsyncByFile": {
+              "uniqueName": "UploadAsyncByFile",
+              "name": "UploadAsync",
+              "httpMethod": "POST",
+              "url": "api/app/file-attachment/upload",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "file",
+                  "typeAsString": "Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features",
+                  "type": "Microsoft.AspNetCore.Http.IFormFile",
+                  "typeSimple": "Microsoft.AspNetCore.Http.IFormFile",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "file",
+                  "name": "ContentType",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Form",
+                  "descriptorName": "file"
+                },
+                {
+                  "nameOnMethod": "file",
+                  "name": "ContentDisposition",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Form",
+                  "descriptorName": "file"
+                },
+                {
+                  "nameOnMethod": "file",
+                  "name": "Headers",
+                  "jsonName": null,
+                  "type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+                  "typeSimple": "{string:Microsoft.Extensions.Primitives.StringValues}",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Form",
+                  "descriptorName": "file"
+                },
+                {
+                  "nameOnMethod": "file",
+                  "name": "Length",
+                  "jsonName": null,
+                  "type": "System.Int64",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Form",
+                  "descriptorName": "file"
+                },
+                {
+                  "nameOnMethod": "file",
+                  "name": "Name",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Form",
+                  "descriptorName": "file"
+                },
+                {
+                  "nameOnMethod": "file",
+                  "name": "FileName",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Form",
+                  "descriptorName": "file"
+                }
+              ],
+              "returnValue": {
+                "type": "System.Guid",
+                "typeSimple": "string"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "MarqueeManagement.FileAttachments.FileAttachmentController"
+            }
+          }
+        },
         "MarqueeManagement.Marquees.MarqueeController": {
           "controllerName": "Marquee",
           "controllerGroupName": "Marquees",
@@ -6578,6 +6869,72 @@
         }
       ]
     },
+    "MarqueeManagement.CustomerAttachments.CreateCustomerAttachmentDto": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CustomerId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "FileAttachmentId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "MarqueeManagement.CustomerAttachments.CustomerAttachmentDto": {
+      "baseType": "Volo.Abp.Application.Dtos.EntityDto<System.Guid>",
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "CustomerId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "FileAttachmentId",
+          "jsonName": null,
+          "type": "System.Guid",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
     "MarqueeManagement.Customers.CreateCustomerDto": {
       "baseType": null,
       "isEnum": false,
@@ -7772,6 +8129,87 @@
           "jsonName": null,
           "type": "[MarqueeManagement.TrackBookings.TrackBookingItemDto]",
           "typeSimple": "[MarqueeManagement.TrackBookings.TrackBookingItemDto]",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        }
+      ]
+    },
+    "Microsoft.AspNetCore.Http.IFormFile": {
+      "baseType": null,
+      "isEnum": false,
+      "enumNames": null,
+      "enumValues": null,
+      "genericArguments": null,
+      "properties": [
+        {
+          "name": "ContentType",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "ContentDisposition",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Headers",
+          "jsonName": null,
+          "type": "{System.String:Microsoft.Extensions.Primitives.StringValues}",
+          "typeSimple": "{string:Microsoft.Extensions.Primitives.StringValues}",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Length",
+          "jsonName": null,
+          "type": "System.Int64",
+          "typeSimple": "number",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "Name",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
+          "isRequired": false,
+          "minLength": null,
+          "maxLength": null,
+          "minimum": null,
+          "maximum": null,
+          "regex": null
+        },
+        {
+          "name": "FileName",
+          "jsonName": null,
+          "type": "System.String",
+          "typeSimple": "string",
           "isRequired": false,
           "minLength": null,
           "maxLength": null,

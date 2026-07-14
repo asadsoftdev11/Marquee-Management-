@@ -24,18 +24,19 @@ public class FileAttachmentController : AbpController
 
     [HttpPost("upload")]
     [Consumes("multipart/form-data")]
-    public async Task<FileAttachmentDto> UploadAsync([FromForm] IFormFile file)
+    public async Task<Guid> UploadAsync([FromForm] IFormFile file)
     {
-        return await _fileAttachmentAppService.UploadAsync(
+        var result = await _fileAttachmentAppService.UploadAsync(
             file.OpenReadStream(),
             file.FileName,
             file.ContentType,
             file.Length
         );
+        return result.Id;
     }
 
     [HttpGet("download/{id}")]
-    [ApiExplorerSettings(IgnoreApi = false)]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> DownloadAsync(Guid id)
     {
         var file = await _fileAttachmentAppService.GetAsync(id);
