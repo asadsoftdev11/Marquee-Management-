@@ -8,8 +8,7 @@ using Volo.Abp.AspNetCore.Mvc;
 
 namespace MarqueeManagement.CustomerAttachments;
 
-
-[RemoteService(IsEnabled = true)]
+[ApiVersion("1.0")] 
 [ControllerName("CustomerAttachments")]
 [Area("app")]
 [Route("api/app/customer-attachment")]
@@ -32,7 +31,7 @@ public class CustomerAttachmentController : AbpController
 
     [HttpGet]
     public async Task<PagedResultDto<CustomerAttachmentDto>> GetListAsync(
-        PagedAndSortedResultRequestDto input)
+        [FromQuery] PagedAndSortedResultRequestDto input) 
     {
         return await _customerAttachmentAppService.GetListAsync(input);
     }

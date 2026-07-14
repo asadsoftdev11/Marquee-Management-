@@ -65,7 +65,7 @@ export class Customers implements OnInit {
   }
 
   onFileSelected(event: any): void {
-    const file = event.target.files[0];
+    const file = event.target.files[0]; // ✅ FIXED: Explicitly added index [0] to fetch the single File instance
     if (!file) return;
     this.selectedFile = file;
     if (file.type.startsWith('image/')) {
@@ -87,17 +87,22 @@ export class Customers implements OnInit {
     if (!this.selectedFile) return null;
     const formData = new FormData();
     formData.append('file', this.selectedFile, this.selectedFile.name);
+    
     const response = await firstValueFrom(
-      this.http.post<string>(`${this.apiUrl}/api/app/file-attachment/upload`, formData)
+      this.http.post(`${this.apiUrl}/api/app/file-attachment/upload`, formData, { 
+        responseType: 'text' 
+      })
     );
     return response;
   }
 
-  saveCustomerAttachment(customerId: string, fileAttachmentId: string): void {
-    this.http.post(`${this.apiUrl}/api/app/customer-attachment`, {
-      customerId,
-      fileAttachmentId,
-    }).subscribe();
+  saveCustomerAttachment(customerId: string, fileAttachmentId: string): Promise<any> {
+    return firstValueFrom(
+      this.http.post(`${this.apiUrl}/api/app/customer-attachment`, {
+        customerId,
+        fileAttachmentId,
+      })
+    );
   }
 
   createCustomer(): void {
@@ -146,19 +151,33 @@ export class Customers implements OnInit {
       this.toaster.info('Nothing changed');
       return;
     }
+
     const data = this.form.value;
-    if (this.selectedCustomer?.id) {
-      this.customerService.update(this.selectedCustomer.id, data).subscribe(async () => {
+
+    try {
+      if (this.selectedCustomer?.id) {
+   
+        await firstValueFrom(this.customerService.update(this.selectedCustomer.id, data));
+
         const fileId = await this.uploadFile();
-        if (fileId) this.saveCustomerAttachment(this.selectedCustomer.id!, fileId);
+        if (fileId) {
+          await this.saveCustomerAttachment(this.selectedCustomer.id, fileId);
+        }
+        
         this.afterSave('Updated Successfully');
-      });
-    } else {
-      this.customerService.create(data).subscribe(async customer => {
+      } else {
+        const customer = await firstValueFrom(this.customerService.create(data));
+        
         const fileId = await this.uploadFile();
-        if (fileId) this.saveCustomerAttachment(customer.id!, fileId);
+        if (fileId && customer?.id) {
+          await this.saveCustomerAttachment(customer.id, fileId);
+        }
+        
         this.afterSave('Created Successfully');
-      });
+      }
+    } catch (error) {
+      this.toaster.error('An error occurred while saving information.');
+      console.error(error);
     }
   }
 

@@ -28,6 +28,12 @@ public class FileAttachmentAppService : ApplicationService, IFileAttachmentAppSe
         return ObjectMapper.Map<FileAttachment, FileAttachmentDto>(file);
     }
 
+    public async Task<byte[]> GetFileBytesAsync(Guid id)
+    {
+        var file = await _repository.GetAsync(id);
+        return file.FileData; 
+    }
+
     public async Task<FileAttachmentDto> UploadAsync(
         Stream stream, string fileName, string contentType, long size)
     {

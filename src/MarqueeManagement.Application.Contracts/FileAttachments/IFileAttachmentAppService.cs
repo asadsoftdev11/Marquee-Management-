@@ -8,6 +8,7 @@ namespace MarqueeManagement.FileAttachments;
 public interface IFileAttachmentAppService : IApplicationService
 {
     Task<FileAttachmentDto> GetAsync(Guid id);
+    Task<byte[]> GetFileBytesAsync(Guid id);
     Task<FileAttachmentDto> UploadAsync(
         Stream stream,
         string fileName,

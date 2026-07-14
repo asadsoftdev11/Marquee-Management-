@@ -8,8 +8,7 @@ using Volo.Abp.AspNetCore.Mvc;
 
 namespace MarqueeManagement.FileAttachments;
 
-
-[RemoteService(IsEnabled = true)]
+[ApiVersion("1.0")]
 [ControllerName("FileAttachments")]
 [Area("app")]
 [Route("api/app/file-attachment")]
@@ -39,7 +38,9 @@ public class FileAttachmentController : AbpController
     [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> DownloadAsync(Guid id)
     {
-        var file = await _fileAttachmentAppService.GetAsync(id);
-        return File(file.FileData, file.ContentType, file.FileName);
+        var fileBytes = await _fileAttachmentAppService.GetFileBytesAsync(id);
+        var metadata = await _fileAttachmentAppService.GetAsync(id);
+
+        return File(fileBytes, metadata.ContentType, metadata.FileName);
     }
 }
