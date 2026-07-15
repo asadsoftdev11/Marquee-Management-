@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListService, PagedResultDto, ConfigStateService } from '@abp/ng.core';
+import { EnvironmentService, ListService, PagedResultDto } from '@abp/ng.core';
 import { CustomerService, CustomerDto, GetCustomerListDto } from '../proxy/customers';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -40,12 +40,12 @@ export class Customers implements OnInit {
     private fb: FormBuilder,
     private confirmation: ConfirmationService,
     private http: HttpClient,
-    private configState: ConfigStateService,
+    private environmentService: EnvironmentService,
   ) {}
 
-  private get apiUrl(): string {
-    return this.configState.getDeep('environment.apis.default.url');
-  }
+private get apiUrl(): string {
+  return this.environmentService.getApiUrl('default');
+}
 
   ngOnInit(): void {
     const streamCreator = (query: any) =>
